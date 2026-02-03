@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { companyApi, activityApi } from '../services/api';
-import type { Company, Contact, CompanyAssignment, ActivityLog } from '../types';
+import type { Company, CompanyAssignment, ActivityLog } from '../types';
 import './CompanyDetailPage.css';
 
 const CompanyDetailPage = () => {
