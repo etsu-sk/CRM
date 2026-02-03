@@ -3,6 +3,7 @@ services:
   - type: web
     name: crm-backend
     env: node
+    plan: free
     region: oregon
     buildCommand: cd backend && npm install && npm run build && npm run migrate
     startCommand: cd backend && npm start
@@ -15,15 +16,12 @@ services:
         generateValue: true
       - key: CORS_ORIGIN
         value: https://crm-frontend.onrender.com
-    disk:
-      name: crm-data
-      mountPath: /opt/render/project/src/backend
-      sizeGB: 1
 
   # Frontend
   - type: web
     name: crm-frontend
     env: node
+    plan: free
     region: oregon
     buildCommand: cd frontend && npm install && npm run build
     startCommand: cd frontend && npm run preview -- --host 0.0.0.0 --port $PORT
