@@ -13,4 +13,9 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    host: true,
+    strictPort: false,
+    allowedHosts: ['all'],
+  },
 })
