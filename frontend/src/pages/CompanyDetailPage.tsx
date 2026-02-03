@@ -7,7 +7,7 @@ import './CompanyDetailPage.css';
 const CompanyDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [company, setCompany] = useState<Company | null>(null);
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  // const [contacts, setContacts] = useState<Contact[]>([]);
   const [assignments, setAssignments] = useState<CompanyAssignment[]>([]);
   const [activities, setActivities] = useState<ActivityLog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ const CompanyDetailPage = () => {
     try {
       const response = await companyApi.getCompany(Number(id));
       setCompany(response.data.company);
-      setContacts(response.data.contacts);
+      // setContacts(response.data.contacts);
       setAssignments(response.data.assignments);
     } catch (err) {
       console.error('顧客詳細の取得に失敗しました', err);
