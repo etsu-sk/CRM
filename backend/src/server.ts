@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
-
+import migrate from './config/migrate';  //
 // SQLite3セッションストア
 const SQLiteStore = require('connect-sqlite3')(session);
 
@@ -63,10 +63,23 @@ app.use('/api/users', userRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// サーバー起動
-app.listen(PORT, () => {
-  console.log(`サーバーが起動しました: http://localhost:${PORT}`);
-  console.log(`環境: ${process.env.NODE_ENV || 'development'}`);
-});
+// サーバー起動（マイグレーション後）
+async function startServer() {
+  try {
+    // マイグレーション実行
+    await migrate();
+
+    // サーバー起動
+    app.listen(PORT, () => {
+      console.log(`サーバーが起動しました: http://localhost:${PORT}`);
+      console.log(`環境: ${process.env.NODE_ENV || 'development'}`);
+    });
+  } catch (error) {
+    console.error('サーバー起動エラー:', error);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 export default app;
