@@ -7,15 +7,13 @@ services:
     region: oregon
     buildCommand: cd backend && npm install && npm run build && npm run migrate
     startCommand: cd backend && npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 3001
-      - key: SESSION_SECRET
-        generateValue: true
-      - key: CORS_ORIGIN
-        value: https://crm-frontend.onrender.com
+      envVars:
+    - key: NODE_ENV
+      value: production
+    - key: SESSION_SECRET
+      generateValue: true
+    - key: CORS_ORIGIN
+      sync: false
 
   # Frontend
   - type: web
