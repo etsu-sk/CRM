@@ -1,5 +1,6 @@
 services:
   # Backend API
+  # Updated configuration
   - type: web
     name: crm-backend
     env: node
