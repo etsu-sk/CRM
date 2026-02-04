@@ -1,6 +1,8 @@
 import db, { dbRun } from './database';
+import bcrypt from 'bcrypt';
 
 async function migrate() {
+
   try {
     console.log('マイグレーション開始...');
 
@@ -116,7 +118,7 @@ async function migrate() {
     console.log('✓ インデックス作成');
 
     // デフォルト管理者ユーザーを作成（パスワード: admin123）
-    const bcrypt = require('bcrypt');
+    
     const defaultPassword = await bcrypt.hash('admin123', 10);
 
     await dbRun(`
