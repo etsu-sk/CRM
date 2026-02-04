@@ -33,12 +33,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // 24時間
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  },sameSite: (process.env.NODE_ENV === 'production' ? 'none' : 'lax') as 'none' | 'lax',
-}));
-
+  maxAge: 24 * 60 * 60 * 1000, // 24時間
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'none',
+},
 // ヘルスチェックエンドポイント
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
