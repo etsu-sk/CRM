@@ -127,15 +127,15 @@ async function migrate() {
     `, [defaultPassword]);
     console.log('✓ デフォルト管理者ユーザー作成（username: admin, password: admin123）');
 
-    console.log('\nマイグレーション完了！');
+        console.log('\nマイグレーション完了！');
 
   } catch (error) {
     console.error('マイグレーションエラー:', error);
     throw error;
-  } finally {
-    db.close();
   }
+  // データベース接続は維持（サーバーで使用するため）
 }
+
 
 // スクリプトとして実行された場合
 if (require.main === module) {
